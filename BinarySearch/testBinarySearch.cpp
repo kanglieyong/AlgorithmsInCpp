@@ -19,7 +19,7 @@ int main()
   int tc = binarySearch(aVec, 500);
 
   cout << "ta = " << ta << endl
-       << "bt = " << tb << endl
+       << "tb = " << tb << endl
        << "tc = " << tc << endl;
 
   return 0;
