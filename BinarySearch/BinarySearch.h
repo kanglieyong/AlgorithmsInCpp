@@ -11,7 +11,7 @@ int binarySearch(const vector<Comparable>& a, const Comparable& x)
   int low = 0, high = a.size() - 1;
 
   while (low <= high) {
-    int mid = (low + high) / 2;
+    int mid = low + (high - low) / 2;
 
     if (x < a[mid]) {
       high = mid - 1;
