@@ -61,5 +61,20 @@ int main()
   }
   cout << endl;
   
+  int numElement = 31;
+  for (Vector<int>::iterator it = aVec.begin(); it != aVec.end(); it++) {
+    if (*it == numElement) {
+      cout << "plus match element with 10: " << endl;
+      *it += 10;
+      cout << "Now match element is : " << *it << endl;
+    }
+  }
+  cout << endl;
+
+  for (Vector<int>::const_iterator it = aVec.begin(); it != aVec.end(); it++) {
+    cout << *it << " ";
+  }
+  cout << endl;
+  
   return 0;
 }
