@@ -31,7 +31,7 @@ void quickSort(vector<Comparable>& a, int left, int right)
     // Begin partioning
     int i = left, j = right - 1;
     for (; ; ) {
-      while (a[++i] pivot) {}
+      while (a[++i] < pivot) {}
       while (pivot < a[--j]) {}
       if (i < j) swap(a[i], a[j]);
       else break;
@@ -72,8 +72,7 @@ const Comparable& median3(vector<Comparable>& a, int left, int right)
 template <typename Comparable>
 void swap(Comparable& a, Comparable& b)
 {
-  Comparable& tmp;
-  tmp = a;
+  Comparable& tmp = a;
   a = b;
   b = tmp;
 }
