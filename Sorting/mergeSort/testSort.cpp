@@ -7,6 +7,11 @@ int main()
   using std::endl;
   
   vector<int> a({10, 5, 4, 9, 2, 3, 8, 1, 7, 6});
+  for (auto & x : a) {
+    cout << x << " ";
+  }
+  cout << endl;
+  
   mergeSort(a);
   for (auto & x : a) {
     cout << x << " ";
