@@ -19,7 +19,7 @@ int main()
   cout << endl;
 
   cout << "Before quickSort" << endl;
-  quickSort(aVec, head, tail);
+  quickSort(aVec);
   cout << "After quickSort" << endl;
   for_each(aVec.begin(), aVec.end(), [](int x) { cout << x << " "; });  
   cout << endl;
