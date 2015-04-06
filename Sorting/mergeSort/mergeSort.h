@@ -11,7 +11,7 @@ template <typename Comparable>
 void mergeSort(vector<Comparable>& a)
 {
   vector<Comparable> tmpArray(a.size());
-  mergetSort(a, tmpArray, 0, a.size() - 1);
+  mergeSort(a, tmpArray, 0, a.size() - 1);
 }
 
 template <typename Comparable>
@@ -30,7 +30,7 @@ void merge(vector<Comparable>& a, vector<Comparable>& tmpArray, int leftPos, int
 {
   int leftEnd = rightPos - 1;
   int tmpPos = leftPos;
-  int numElement = rightEnd - leftPos + 1;
+  int numElements = rightEnd - leftPos + 1;
 
   while (leftPos <= leftEnd && rightPos <= rightEnd) {
     if (a[leftPos] < a[rightPos]) {
