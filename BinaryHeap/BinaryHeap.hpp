@@ -1,7 +1,11 @@
+#include <vector>
+
+using std::vector;
+
 template <typename Comparable>
 class BinaryHeap
 {
- public:
+public:
   explicit BinaryHeap(int capacity = 100);
   explicit BinaryHeap(const vector<Comparable>& items);
 
@@ -13,10 +17,105 @@ class BinaryHeap
   void deleteMin(Comparable& minItem);
   void makeEmpty();
 
- private:
-  int currentSize;
+private:
+  int currentSize;  // Number of elements in heap
   vector<Comparable> array;
 
   void buildHeap();
   void percolateDown(int hole);
 };
+
+template <typename Comparable>
+BinaryHeap<Comparable> BinaryHeap(int capacity)
+  : currentSize(capacity)
+{  
+}
+
+
+template <typename Comparable>
+BinaryHeap<Comparable> BinaryHeap(const vector<Comparable>& items)
+  : currentSize(items.size()),
+    array(items.size() + 10)
+{
+  for (int i = 0; i < items.size(); i++) {
+    array[i + 1] = items[i];
+  }
+  buildHeap();
+}
+
+// Insert item x, allowing duplicates.
+
+template <typename Comparable>
+void insert(const Comparable& x)
+{
+  if (currentSize == array.size() - 1) {
+    array.resize(array.size() * 2);
+  }
+
+  // percolate up
+  int hole = ++currentSize;
+  for (; hole > 1 && x < array[hole / 2]; hole /= 2) {
+    array[hole] = array[hole / 2];
+  }
+  array[hole] = x;
+}
+
+// Remove the minimum item.
+// Throws UnderflowException if empty.
+
+void deleteMin()
+{
+  if (isEmpty()) {
+    throw UnderflowException();
+  }
+
+  array[1] = array[currentSize--];
+  percolateDown(1);
+}
+
+// Remove the minimum item and place it to the minItem
+// Throws UnderflowException if empty.
+
+void deleteMin(Comparable& minItem)
+{
+  if (isEmpty()) {
+    throw UnderflowException();
+  }
+
+  minItem = array[1];
+  array[1] = array[currentSize--];
+  percolateDown(1);
+}
+
+// Internal method to percolate down in the heap.
+// hole is the index at which the percolate begins.
+
+void percolateDown(int hole)
+{
+  int child;
+  Comparable tmp = array[hole];
+
+  for (; hole * 2 <= currentSize; hole = child) {
+    child = hole * 2;
+    if (child != currentSize && array[child + 1] < array[child]) {
+      child++;
+    }
+    if (array[child] < tmp) {
+      array[hole] = array[child];
+    } else {
+      break;  // Get it!
+    }
+  }
+  array[hole] = tmp;
+}
+
+// Establish heap order property from an arbitrary
+// arrangement of items. Runs in linear time.
+
+template <typename Comparable>
+void buildHeap()
+{
+  for (int i = currentSize / 2; i > 0; i--) {
+    percolateDown(i);
+  }
+}
