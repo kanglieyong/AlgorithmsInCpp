@@ -29,6 +29,7 @@ private:
 
 template <typename Comparable>
 BinaryHeap<Comparable>::BinaryHeap(int capacity)
+  : array(capacity)
 {  
 }
 
