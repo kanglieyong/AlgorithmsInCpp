@@ -12,5 +12,11 @@ int main()
   BinaryHeap<int> aBH(12);
   BinaryHeap<int> bBH(aVec);
 
+  int tmpInt;
+  while (!bBH.isEmpty()) {
+    bBH.deleteMin(tmpInt);
+    cout << tmpInt << endl;
+  }
+
   return 0;
 }

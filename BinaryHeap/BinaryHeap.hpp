@@ -1,6 +1,8 @@
 #include <vector>
+#include <stdexcept>
 
 using std::vector;
+using std::underflow_error;
 
 template <typename Comparable>
 class BinaryHeap
@@ -9,8 +11,8 @@ public:
   explicit BinaryHeap(int capacity = 100);
   explicit BinaryHeap(const vector<Comparable>& items);
 
-  bool isEmpty() const;
-  const Comparable& findMin() const;
+  bool isEmpty() const { return currentSize == 0; }
+  const Comparable& findMin() const { return array[1]; }
 
   void insert(const Comparable& x);
   void deleteMin();
@@ -26,14 +28,13 @@ private:
 };
 
 template <typename Comparable>
-BinaryHeap<Comparable> BinaryHeap(int capacity)
-  : currentSize(capacity)
+BinaryHeap<Comparable>::BinaryHeap(int capacity)
 {  
 }
 
 
 template <typename Comparable>
-BinaryHeap<Comparable> BinaryHeap(const vector<Comparable>& items)
+BinaryHeap<Comparable>::BinaryHeap(const vector<Comparable>& items)
   : currentSize(items.size()),
     array(items.size() + 10)
 {
@@ -46,7 +47,7 @@ BinaryHeap<Comparable> BinaryHeap(const vector<Comparable>& items)
 // Insert item x, allowing duplicates.
 
 template <typename Comparable>
-void insert(const Comparable& x)
+void BinaryHeap<Comparable>::insert(const Comparable& x)
 {
   if (currentSize == array.size() - 1) {
     array.resize(array.size() * 2);
@@ -63,10 +64,11 @@ void insert(const Comparable& x)
 // Remove the minimum item.
 // Throws UnderflowException if empty.
 
-void deleteMin()
+template <typename Comparable>
+void BinaryHeap<Comparable>::deleteMin()
 {
   if (isEmpty()) {
-    throw UnderflowException();
+    throw underflow_error("fgdf");
   }
 
   array[1] = array[currentSize--];
@@ -76,10 +78,11 @@ void deleteMin()
 // Remove the minimum item and place it to the minItem
 // Throws UnderflowException if empty.
 
-void deleteMin(Comparable& minItem)
+template <typename Comparable>
+void BinaryHeap<Comparable>::deleteMin(Comparable& minItem)
 {
   if (isEmpty()) {
-    throw UnderflowException();
+    throw underflow_error("sdf");
   }
 
   minItem = array[1];
@@ -90,7 +93,8 @@ void deleteMin(Comparable& minItem)
 // Internal method to percolate down in the heap.
 // hole is the index at which the percolate begins.
 
-void percolateDown(int hole)
+template <typename Comparable>
+void BinaryHeap<Comparable>::percolateDown(int hole)
 {
   int child;
   Comparable tmp = array[hole];
@@ -113,7 +117,7 @@ void percolateDown(int hole)
 // arrangement of items. Runs in linear time.
 
 template <typename Comparable>
-void buildHeap()
+void BinaryHeap<Comparable>::buildHeap()
 {
   for (int i = currentSize / 2; i > 0; i--) {
     percolateDown(i);
