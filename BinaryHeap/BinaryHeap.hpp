@@ -12,6 +12,7 @@ public:
   explicit BinaryHeap(const vector<Comparable>& items);
 
   bool isEmpty() const { return currentSize == 0; }
+  int size() const { return currentSize; }
   const Comparable& findMin() const { return array[1]; }
 
   void insert(const Comparable& x);
@@ -89,6 +90,13 @@ void BinaryHeap<Comparable>::deleteMin(Comparable& minItem)
   minItem = array[1];
   array[1] = array[currentSize--];
   percolateDown(1);
+}
+
+template <typename Comparable>
+void BinaryHeap<Comparable>::makeEmpty()
+{
+  array.clear();
+  currentSize = 0;
 }
 
 // Internal method to percolate down in the heap.
