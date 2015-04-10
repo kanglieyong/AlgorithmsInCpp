@@ -3,6 +3,7 @@
 
 using std::vector;
 using std::underflow_error;
+using std::overflow_error;
 
 template <typename Comparable>
 class BinaryHeap
@@ -12,8 +13,13 @@ public:
   explicit BinaryHeap(const vector<Comparable>& items);
 
   bool isEmpty() const { return currentSize == 0; }
-  int size() const { return currentSize; }
-  const Comparable& findMin() const { return array[1]; }
+  const Comparable& findMin() const
+  {
+    if (isEmpty()) {
+      throw overflow_error("Empty");
+    }
+    return array[1];
+  }
 
   void insert(const Comparable& x);
   void deleteMin();
@@ -30,7 +36,8 @@ private:
 
 template <typename Comparable>
 BinaryHeap<Comparable>::BinaryHeap(int capacity)
-  : array(capacity)
+  : currentSize(0),
+    array(capacity)
 {  
 }
 
@@ -70,7 +77,7 @@ template <typename Comparable>
 void BinaryHeap<Comparable>::deleteMin()
 {
   if (isEmpty()) {
-    throw underflow_error("fgdf");
+    throw underflow_error("underflow_error");
   }
 
   array[1] = array[currentSize--];
@@ -84,7 +91,7 @@ template <typename Comparable>
 void BinaryHeap<Comparable>::deleteMin(Comparable& minItem)
 {
   if (isEmpty()) {
-    throw underflow_error("sdf");
+    throw underflow_error("underflow_error");
   }
 
   minItem = array[1];

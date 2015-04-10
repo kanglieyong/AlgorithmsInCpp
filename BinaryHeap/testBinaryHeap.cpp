@@ -1,5 +1,4 @@
 #include "BinaryHeap.hpp"
-
 #include <iostream>
 
 using std::cout;
@@ -7,17 +6,16 @@ using std::endl;
 
 int main()
 {
-  vector<int> aVec({10, 3, 2, 11, 8, 7, 5, 1, 9, 6, 4, 12, 15, 13, 12});
   int t = 12;
   BinaryHeap<int> aBH(t);
-  BinaryHeap<int> bBH(aVec);
-
   bool aIsEmpty = aBH.isEmpty();
   if (aIsEmpty) {
     cout << "aBH is empty!" << endl;
   }
 
   int tmpInt;
+  vector<int> bVec({10, 3, 2, 11, 8, 7, 5, 1, 9, 6, 4, 12, 15, 13, 12});  
+  BinaryHeap<int> bBH(bVec);
   while (!bBH.isEmpty()) {
     bBH.deleteMin(tmpInt);
     cout << tmpInt << " ";
@@ -43,10 +41,17 @@ int main()
   }
   cout << endl;
 
-  vector<int> fVec({6, 4, 8, 3, 5, 1, 9, 2});
+  vector<int> fVec({16, 14, 18, 13, 15, 11, 19, 12});
   BinaryHeap<int> fBH(fVec);
   dBH = fBH;
-  cout << dBH.size() << endl;
+  int whatFirst = dBH.findMin();
+  cout << whatFirst << endl;
+
+  BinaryHeap<int> gBH(10);
+  if (gBH.isEmpty()) {
+    cout << "gBH is empty! " << endl;
+  }
+  gBH.deleteMin();
   
   return 0;
 }
