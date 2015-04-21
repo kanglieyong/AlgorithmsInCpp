@@ -37,6 +37,17 @@ int main()
   b.traverseTree();
 
   cout << endl;
+  cout << "Preorder traversal:" << endl;
+  b.pre_traverseTree();
+
+  cout << endl;
+
+  cout << endl;
+  cout << "Postorder traversal: " << endl;
+  b.post_traverseTree();
+
+  cout << endl;
+  cout << endl;
 
   while (!b.isEmpty()) {
     string test = b.findMin();

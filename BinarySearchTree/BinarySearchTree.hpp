@@ -19,7 +19,9 @@ public:
   const Comparable& findMax() const;
   bool contains(const Comparable& x) const;
   bool isEmpty() const;
-  void traverseTree(ostream& out = std::cout) const;
+  void traverseTree(ostream& out = cout) const;
+  void pre_traverseTree(ostream& out = cout) const;
+  void post_traverseTree(ostream& out = cout) const;
 
   void makeEmpty();
   void insert(const Comparable& x);
@@ -102,12 +104,32 @@ private:
     t = NULL;
   }
   
-  void traverseTree(BinaryNode* t, ostream& out = std::cout) const
+  void traverseTree(BinaryNode* t, ostream& out = cout) const
   {
     if (t != NULL) {
       traverseTree(t->left, out);
       out << t->element << endl;
       traverseTree(t->right, out);
+    }
+  }
+
+  // Preorder traversal
+  void pre_traverseTree(BinaryNode* t, ostream& out = cout) const
+  {
+    if (t != NULL) {
+      out << t->element << endl;
+      pre_traverseTree(t->left, out);
+      pre_traverseTree(t->right, out);
+    }
+  }
+
+  // Postorder traversal
+  void post_traverseTree(BinaryNode* t, ostream& out = cout) const
+  {
+    if (t != NULL) {
+      post_traverseTree(t->left, out);
+      post_traverseTree(t->right, out);
+      out << t->element << endl;
     }
   }
   
@@ -183,6 +205,18 @@ template <typename Comparable>
 void BinarySearchTree<Comparable>::traverseTree(ostream& out) const
 {
   traverseTree(root, out);
+}
+
+template <typename Comparable>
+void BinarySearchTree<Comparable>::pre_traverseTree(ostream& out) const
+{
+  pre_traverseTree(root, out);
+}
+
+template <typename Comparable>
+void BinarySearchTree<Comparable>::post_traverseTree(ostream& out) const
+{
+  post_traverseTree(root, out);
 }
 
 // write function
