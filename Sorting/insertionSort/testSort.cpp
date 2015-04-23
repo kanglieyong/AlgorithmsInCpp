@@ -1,5 +1,10 @@
+/* Thu Apr 23 22:55:37 CST 2015 */
+
 #include "insertionSort.h"
 #include <iostream>
+
+// void insertionSort(vector<Comparable>& a);
+// void insertionSort2(vector<Comparable>& a, int left, int right);
 
 int main()
 {
