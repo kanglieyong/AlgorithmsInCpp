@@ -7,7 +7,7 @@ int main()
   using std::endl;
   
   vector<int> a({10, 5, 4, 9, 2, 3, 8, 1, 7, 6});
-  insertionSort(a);
+  insertionSort2(a, 0, a.size() - 1);
   for (auto & x : a) {
     cout << x << " ";
   }
