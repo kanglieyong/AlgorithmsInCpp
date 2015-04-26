@@ -29,30 +29,22 @@ void quickSort(vector<Comparable>& a, int left, int right)
     Comparable pivot = median3(a, left, right);
 
     // Begin partioning
-    int i = left, j = right - 1;
+    int i = left, j = right-1;
     for (; ; ) {
       while (a[++i] < pivot) {}
-      while (pivot < a[--j]) {}
-      if (i < j) swap(a[i], a[j]);
-      else break;
+      while (pivot < a[--j]) { if (j == i) break; }
+      if (i >= j) break;
+      swap(a[i], a[j]);
     }
 
-    swap(a[i], a[right - 1]);    // Restore pivot
+    swap(a[i], a[right-1]);    // Restore pivot
 
-    quickSort(a, left, i - 1);   // Sort small elements
-    quickSort(a, i + 1, right);  // Sort large elements
+    quickSort(a, left, i-1);   // Sort small elements
+    quickSort(a, i+1, right);  // Sort large elements
   }
   // Do an insertion sort on the subarray
   else {
     insertionSort(a, left, right);
-
-    int i = left + 1, j = right - 2;
-    for (; ; ) {
-      while (a[i] < pivot) i++;
-      while (pivot < a[j]) j--;
-      if (i < j) swap(a[i], a[j]);
-      else break;
-    }
   }
 }
 
@@ -76,6 +68,7 @@ void swap(Comparable& a, Comparable& b)
   a = b;
   b = tmp;
 }
+
 /*
  * Simple insertion sort.
  */
@@ -85,10 +78,10 @@ void insertionSort(vector<Comparable>& a, int left, int right)
 {
   int j;
 
-  for (int p = 1; p < right - left; p++) {
-    Comparable tmp = a[left + p];
-    for (j = left + p; j > left && tmp < a[j - 1]; j--) {
-      a[j] = a[j - 1];
+  for (int p = 1; p < right-left; p++) {
+    Comparable tmp = a[left+p];
+    for (j = left+p; j > left && tmp < a[j-1]; j--) {
+      a[j] = a[j-1];
     }
     a[j] = tmp;
   }
