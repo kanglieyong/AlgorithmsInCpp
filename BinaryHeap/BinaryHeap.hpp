@@ -1,3 +1,6 @@
+#ifndef BINARYHEAP_H_
+#define BINARYHEAP_H_
+
 #include <vector>
 #include <stdexcept>
 
@@ -34,13 +37,17 @@ private:
   void percolateDown(int hole);
 };
 
+#endif
+
+// public methods
+
+// constructor
 template <typename Comparable>
 BinaryHeap<Comparable>::BinaryHeap(int capacity)
   : currentSize(0),
     array(capacity)
 {  
 }
-
 
 template <typename Comparable>
 BinaryHeap<Comparable>::BinaryHeap(const vector<Comparable>& items)
@@ -105,6 +112,8 @@ void BinaryHeap<Comparable>::makeEmpty()
   array.clear();
   currentSize = 0;
 }
+
+// private methods
 
 // Internal method to percolate down in the heap.
 // hole is the index at which the percolate begins.
