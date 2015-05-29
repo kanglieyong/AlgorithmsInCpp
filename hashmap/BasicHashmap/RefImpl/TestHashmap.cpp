@@ -28,6 +28,8 @@ int main()
 	myHash[4] = 35;
 	myHash[4] = 60;
 
+	cout << myHash[4] << endl;
+
 	auto x3 = myHash.find(4);
 	if (x3 != nullptr) { 
 		cout << "4 maps to " << x3->second << endl;
