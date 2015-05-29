@@ -27,6 +27,8 @@ int main(void)
   myHash[4] = 23;
   myHash[4] = 60;
 
+  cout << myHash[4] << endl;
+
   auto x3 = myHash.find(4);
   if (x3 != nullptr) cout << "4 maps to " << x3->second << endl;
   else               cout << "cannot find 4 in map" << endl;
