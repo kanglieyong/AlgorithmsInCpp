@@ -9,8 +9,8 @@ int main()
 {
   Employee a;
   Employee k("kang");
-  Employee w("lie2");
-  Employee y("lie");
+  Employee w("Jhon");
+  Employee y("Ritchie");
   Employee h("hu");
   
   HashTable<Employee> e;
