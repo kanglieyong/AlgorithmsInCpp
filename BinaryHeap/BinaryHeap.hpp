@@ -45,7 +45,7 @@ private:
 template <typename Comparable>
 BinaryHeap<Comparable>::BinaryHeap(int capacity)
   : currentSize(0),
-    array(capacity)
+    array(capacity + 1)
 {  
 }
 
